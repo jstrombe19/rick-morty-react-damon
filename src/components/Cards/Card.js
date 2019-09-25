@@ -1,17 +1,20 @@
 import React from 'react'
 import './Cards.css'
 
-export default function Card({character, setActiveCard, activeCard, saveCharacter}) {
+export default function Card({character, setActiveCard, activeCard, characterAction, savedCharacters}) {
 
     const {image, name, species, gender} = character
 
-    const handleClick = (event) => {
-      setActiveCard(character)
-      saveCharacter(character)
-    }
+    const handleClick = (character) => (
+      (savedCharacters.includes(character)
+        ? characterAction(character)
+        : (characterAction(character),
+          setActiveCard(character))
+      )
+    )
 
     return (
-        <div className={ activeCard ? 'active-card' : 'card'} onClick={() => handleClick()}>
+        <div className={ activeCard ? 'active-card' : 'card'} onClick={() => (activeCard ? null : handleClick(character))}>
             <h3>{name}</h3>
             <img src={image} />
             {activeCard

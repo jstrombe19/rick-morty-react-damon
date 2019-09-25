@@ -1,13 +1,14 @@
 import React from 'react'
 import Card from '../Cards/Card'
 
-export default function CardContainer({characters, setActiveCard, saveCharacter}) {
+export default function CardContainer({characters, setActiveCard, characterAction, savedCharacters}) {
 
     const characterCards = characters.map(character => (
         <Card
           character={character}
+          savedCharacters={savedCharacters}
           setActiveCard={setActiveCard}
-          saveCharacter={saveCharacter}
+          characterAction={characterAction}
           key={Math.random() * characters.length}
        />
     ))

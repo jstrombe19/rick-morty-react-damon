@@ -26,6 +26,15 @@ class App extends Component {
     )
   )
 
+  removeCharacter = (character) => (
+    (this.state.savedCharacters.includes(character)
+    ? this.setState({
+      savedCharacters: this.state.savedCharacters.filter(c => c !== character)
+    })
+    : null
+    )
+  )
+
   render() {
     return (
       <div className="App">
@@ -34,6 +43,7 @@ class App extends Component {
               characters={this.state.characters}
               savedCharacters={this.state.savedCharacters}
               saveCharacter={this.saveCharacter}
+              removeCharacter={this.removeCharacter}
             />
           : null }
       </div>
